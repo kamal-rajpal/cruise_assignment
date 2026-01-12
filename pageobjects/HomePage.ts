@@ -10,6 +10,7 @@ export class HomePage {
   loginLink: Locator;
   referFriendLink: Locator;
   allLinks: Locator;
+  findCruiseLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +24,9 @@ export class HomePage {
     this.referFriendLink = page.getByRole('link', { name: 'Refer-a-Friend' });
 
     this.allLinks = page.locator('a[href]');
+        this.findCruiseLink = page.getByRole('link', { name: 'Find a Cruise' });  
+
+
   }
 
   async goto(): Promise<void> {
@@ -36,6 +40,9 @@ export class HomePage {
   async clickLogin(): Promise<void> {
     await this.loginLink.click();
   }
+  async navigateToFindCruise() {  
+    await this.findCruiseLink.click();  
+  }  
 
   /**
    * Get all hrefs on the page

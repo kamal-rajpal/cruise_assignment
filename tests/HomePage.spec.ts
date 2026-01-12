@@ -3,7 +3,7 @@ const { POManager } = require('../pageobjects/POManager');
 //Json->string->js object
 const dataset = JSON.parse(JSON.stringify(require("../utils/TestData.json")));
 
-test.describe('Princess Cruises - POManager Framework', () => {
+test.describe('Princess Cruises ', () => {
   test('User can login and navigate cruises', async ({ page }) => {
     const poManager = new POManager(page);
 
@@ -66,5 +66,8 @@ test('Check broken links on HomePage', async ({ page }) => {
     expect(brokenLinks).toHaveLength(0); // Fail test only for broken internal links
   
 });
+
+
+
 
 });
