@@ -4,25 +4,40 @@ const { POManager } = require('../pageobjects/POManager');
 const dataset = JSON.parse(JSON.stringify(require("../utils/TestData.json")));
 
 
-test('Booking flow using POManager', async ({ page }) => {
-    const poManager = new POManager(page);
-    const homePage = poManager.getHomePage();
-    const loginPage = poManager.getLoginPage();
-    const cruisePage = poManager.getCruisePage();
-    const cruiseDetailsPage = poManager.getCruiseDetailsPage();
-    const guestInfoPage = poManager.getGuestInfoPage(); 
 
-    // Go to home page and accept cookies
-     // Go to homepage
-    await homePage.goto();
-    await homePage.acceptCookies();
+test('Verify Cruise Page Filters and tabs', async ({ page }) => {
+  const poManager = new POManager(page);
+  const homePage = poManager.getHomePage();
+  const cruisePage = poManager.getCruisePage();
+  // Go to home page and accept cookies
+  // Go to homepage
+  await homePage.goto();
+  await homePage.acceptCookies();
+  await poManager.homePage.navigateToFindCruise();
+  await cruisePage.verifyTabsAndFilters();
+  await cruisePage.verifyDefaultMenusAndPackage();
+});
+
+
+test('Booking flow till payment page', async ({ page }) => {
+  const poManager = new POManager(page);
+  const homePage = poManager.getHomePage();
+  const loginPage = poManager.getLoginPage();
+  const cruisePage = poManager.getCruisePage();
+  const cruiseDetailsPage = poManager.getCruiseDetailsPage();
+  const guestInfoPage = poManager.getGuestInfoPage();
+
+  // Go to home page and accept cookies
+  // Go to homepage
+  await homePage.goto();
+  await homePage.acceptCookies();
 
   await poManager.homePage.navigateToFindCruise();
 
-//   await cruisePage.verifyRemove16PlusDaysVisible();
-//   await cruisePage.verifyViewResultsButtonVisible();
-//   await cruisePage.openDeparturePortTab();
-//   await cruisePage.openShipTab();
+  //   await cruisePage.verifyRemove16PlusDaysVisible();
+  //   await cruisePage.verifyViewResultsButtonVisible();
+  //   await cruisePage.openDeparturePortTab();
+  //   await cruisePage.openShipTab();
   await cruisePage.clickFirstCruiseDetails();
 
   await poManager.cruiseDetailsPage.verifyPage();

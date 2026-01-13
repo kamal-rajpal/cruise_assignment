@@ -25,30 +25,30 @@ test.describe('Princess Cruises ', () => {
     await cruisePage.openCruiseToursTab();
   });
 
-test('Check broken links on HomePage', async ({ page }) => {
-  test.setTimeout(5 * 60 * 1000); // 5 minutes
+  test('Check broken links on HomePage', async ({ page }) => {
+    test.setTimeout(5 * 60 * 1000); // 5 minutes
 
-  const poManager = new POManager(page);
-  const homePage = poManager.getHomePage();  
+    const poManager = new POManager(page);
+    const homePage = poManager.getHomePage();
 
-  await homePage.goto();
-  await homePage.acceptCookies();
+    await homePage.goto();
+    await homePage.acceptCookies();
 
-  const brokenLinks = await homePage.checkBrokenLinks();
-  console.log('Broken links found:', brokenLinks);
+    const brokenLinks = await homePage.checkBrokenLinks();
+    console.log('Broken links found:', brokenLinks);
 
-  expect(brokenLinks, 'Some links are broken').toHaveLength(0);
-});
+    expect(brokenLinks, 'Some links are broken').toHaveLength(0);
+  });
 
 
   test('User can login, navigate to Manage Booking, and check broken links', async ({ page }) => {
-     test.setTimeout(5 * 60 * 1000); // 5 minutes
+    test.setTimeout(5 * 60 * 1000); // 5 minutes
     const poManager = new POManager(page);
     const homePage = poManager.getHomePage();
     const loginPage = poManager.getLoginPage();
     const cruisePage = poManager.getCruisePage();
     // Go to home page and accept cookies
-     // Go to homepage
+    // Go to homepage
     await homePage.goto();
     await homePage.acceptCookies();
     await homePage.clickLogin();
@@ -64,8 +64,8 @@ test('Check broken links on HomePage', async ({ page }) => {
     console.log('Broken internal links found on Manage Booking page:', brokenLinks);
 
     expect(brokenLinks).toHaveLength(0); // Fail test only for broken internal links
-  
-});
+
+  });
 
 
 

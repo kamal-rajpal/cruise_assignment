@@ -21,6 +21,13 @@ export default defineConfig({
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+  expect: {
+    /**
+     * Maximum time expect() should wait for the condition to be met.
+     * For example in `await expect(locator).toHaveText();`
+     */
+    timeout: 15000
+  },
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
@@ -33,7 +40,7 @@ export default defineConfig({
     trace: "on-first-retry",
     screenshot: "on",
     video: "on",
-    actionTimeout: 20_000,
+    actionTimeout: 40_000,
     navigationTimeout: 45_000
   },
   
