@@ -31,8 +31,8 @@ export default defineConfig({
  use: {
     baseURL: "https://princess.com",
     trace: "on-first-retry",
-    screenshot: "only-on-failure",
-    video: "retain-on-failure",
+    screenshot: "on",
+    video: "on",
     actionTimeout: 20_000,
     navigationTimeout: 45_000
   },
